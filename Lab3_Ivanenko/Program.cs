@@ -1,20 +1,15 @@
-﻿using System;
+using System;
+using System.Text;
 
 namespace LabAllInOne
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-
-            // быстрые аргументы: server / client для ЛР3
-            if (args != null && args.Length > 0)
-            {
-                var a = args[0].Trim().ToLowerInvariant();
-                if (a.StartsWith("serv")) { Lab3Module.RunServer(); return; }
-                if (a.StartsWith("cli")) { Lab3Module.RunClient(); return; }
-            }
+            // Русская консоль в UTF-8 (достаточно для cmd/PowerShell/Windows Terminal)
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.InputEncoding = Encoding.UTF8;
 
             while (true)
             {
@@ -25,14 +20,28 @@ namespace LabAllInOne
                 Console.WriteLine("4) ЛР3 — клиент");
                 Console.WriteLine("0) Выход");
                 Console.Write("> ");
-                var key = Console.ReadLine();
 
-                if (key == "1") Lab1Module.Run();
-                else if (key == "2") Lab2Module.Run();
-                else if (key == "3") Lab3Module.RunServer();
-                else if (key == "4") Lab3Module.RunClient();
-                else if (key == "0" || string.Equals(key, "exit", StringComparison.OrdinalIgnoreCase)) return;
-                else Console.WriteLine("Не понял. Введите 0..4.");
+                var k = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(k)) continue;
+                k = k.Trim();
+
+                if (k == "0") return;
+
+                try
+                {
+                    switch (k)
+                    {
+                        case "1": Lab1Module.Run(); break;
+                        case "2": Lab2Module.Run(); break;
+                        case "3": Lab3Module.RunServer(); break;
+                        case "4": Lab3Module.RunClient(); break;
+                        default: Console.WriteLine("Неизвестный пункт меню."); break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("[ОШИБКА] " + ex.Message);
+                }
             }
         }
     }
