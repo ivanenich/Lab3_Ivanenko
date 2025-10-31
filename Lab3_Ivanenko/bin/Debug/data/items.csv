@@ -2,3 +2,4 @@ Id;Name;Description;Rarity;Kind;Weight;Length;Slots;MakerName;MakerCity;Required
 1;sword;;Common;Weapon;20;10;1;admin;;5;18;100;2025-10-31T22:21:38.5359649+03:00
 2;1;1;Common;Weapon;1;1;1;1;1;1;1;1;2025-10-31T23:13:31.8256606+03:00
 3;3;3;Epic;Potion;3;3;3;3;3;3;3;3;2025-10-31T23:48:20.7973186+03:00
+4;shield;;Epic;Weapon;12;42;12;admin;;5;102;100;2025-11-01T00:30:34.0294957+03:00
